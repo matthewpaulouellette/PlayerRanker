@@ -4,12 +4,16 @@ Created on Aug 1, 2016
 @author: Matt
 '''
 import json
+import os
 
 from myql import MYQL
 from yahoo_oauth import OAuth1
 
 
 DEBUG = True 
+CREDENTIALS_FILE = '../api_credentials.json'
+API_CREDENTIALS = { 'consumer_key': 'dj0yJmk9TXdzNGFSN04yQkpFJmQ9WVdrOVNFbGhhVTFMTkc4bWNHbzlNQS0tJnM9Y29uc3VtZXJzZWNyZXQmeD1hNg--',
+                    'consumer_secret': 'e1f89ae0fd5e16a07c99aca7b29e91338dacfa1d' }
 
 def pp_json(input_json):
     print ( json.dumps(input_json, indent=4) )
@@ -19,6 +23,15 @@ def json_to_file(filename, data):
         json.dump(data, outfile, sort_keys = True, indent = 4)
 
 # Create/get yahoo auth
+if os.path.isfile(CREDENTIALS_FILE):
+    print('Yahoo API credentials found.')
+else:
+    print('No API credentials found, generating...')
+       
+    with open(CREDENTIALS_FILE,'w') as data_file:    
+        data_file.write(json.dumps(API_CREDENTIALS))
+        print('Yahoo API credentials saved for future use.')
+
 oauth = OAuth1(None, None, from_file='../api_credentials.json')
 
 if not oauth.token_is_valid():

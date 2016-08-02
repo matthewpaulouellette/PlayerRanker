@@ -1,19 +1,26 @@
 # PlayerRanker App
 
-Pull scores for X years
+Pull scores by scraping Yahoo fantasy site.
 
-Extrapolate each season out have played full games
-
+Considered using the API, but can only pull back for the last year and not multiple years.
 
 ## To Consider
 
 Injury risk
 
-Shooting %
+High/Low Shooting %
+
+Adjusting for missed games
 
 
-## Example Queries
+## App flow
 
-select * from fantasysports.leagues.settings where league_key='nhl.l.4138'
+For each category on yahoo, pull the top <X> players (how many pages)
 
-select * from fantasysports.players.stats where league_key='nhl.l.4138'
+Store players in a DB, (sqlite likely) so can do SQL against it.
+
+Extrapolate each season out have played full due to injury (scale to 82 games)
+
+Repeat for a few seasons, but weight the most recent one more?
+
+Do again for a few seasons back likely.
