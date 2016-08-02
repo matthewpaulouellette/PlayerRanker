@@ -82,9 +82,6 @@ for year in YEARS:
             url = url.replace('{{YEAR}}', year).replace('{{SORT}}', sort).replace('{{PAGE}}', paging_url)
             soup = BeautifulSoup(br.open(url), 'html5lib')
             
-            with open(OUT_DIR+'scraped-page.html', 'w') as outfile:
-                outfile.write(soup.prettify('utf-8'))
-            
             for row in soup.find('div', {'class': 'players'}).find('tbody').findChildren('tr'):
                 d = {}
                 cells = row.findChildren('td')
