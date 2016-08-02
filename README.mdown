@@ -1,0 +1,19 @@
+# PlayerRanker App
+
+Pull scores for X years
+
+Extrapolate each season out have played full games
+
+
+## To Consider
+
+Injury risk
+
+Shooting %
+
+
+## Example Queries
+
+select * from fantasysports.leagues.settings where league_key='nhl.l.4138'
+
+select * from fantasysports.players.stats where league_key='nhl.l.4138'
